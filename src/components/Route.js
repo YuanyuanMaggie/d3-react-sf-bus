@@ -5,6 +5,7 @@ import { feature } from 'topojson-client'
 import Color from 'color'
 import { generatePathFuc, routeConfigFunc } from '../helpers'
 import Vehicles from './Vehicles'
+
 class Route extends Component {
     constructor() {
         super()

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { get } from 'lodash'
 import Checkbox from '../components/Checkbox'
+import { updateRoute } from '../reducers/actions'
 
 class Panel extends Component {
 
@@ -9,7 +10,12 @@ class Panel extends Component {
         return(
             <div className="panel">
                 { this.props.routesList.map((route,i) => (
-                    <Checkbox key={`checkbox-${route.tag}`} tag={route.tag} title={route.title} />
+                    <Checkbox key={`checkbox-${route.tag}`} 
+                        tag={route.tag} 
+                        title={route.title} 
+                        updateRoute={this.props.updateRoute}
+                        currentRoutes={this.props.currentRoutes}
+                    />
                 ))}
             </div>
         )
@@ -18,9 +24,11 @@ class Panel extends Component {
 
 const mapStateToProps = (state) => ({
     routesList: get(state, 'routesList', []),
+    currentRoutes: get(state, 'currentRoutes', []),
 })
 
 const mapDispatchToProps = {
+    updateRoute
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Panel);

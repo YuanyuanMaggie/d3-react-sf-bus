@@ -9,14 +9,15 @@ import Map from "./Map"
 import Panel from "./Panel"
 class Dashboard extends Component {
     componentDidMount() {
+        // init with 5 routes
         get(routeListURL)
             .then(res => {
                 if (res.status !== 200) return;
                 const routes = _.get(res, 'data.route')
                 if (routes){
                     this.props.fetchRoutes(routes)
-                    const first10Routes = _.map(_.take(routes, 10), route => (route.tag))
-                    this.props.updateRoutes(first10Routes)
+                    const first5Routes = _.map(_.take(routes, 5), route => (route.tag))
+                    this.props.updateRoutes(first5Routes)
                 }
             })
     }
