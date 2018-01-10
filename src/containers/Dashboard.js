@@ -3,9 +3,9 @@ import { get } from 'axios'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import { routeListURL } from '../helpers'
-import { fetchRoutes, updateRoutes } from '../reducers/actions'
-import Header from './Header'
-import Map from "./Map"
+import { fetchRoutes, updateRoutes } from '../actions'
+import Header from '../components/Header'
+import Map from "../components/Map"
 import Panel from "./Panel"
 
 class Dashboard extends Component {

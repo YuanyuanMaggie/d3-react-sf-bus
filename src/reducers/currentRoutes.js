@@ -1,4 +1,4 @@
-import { UPDATE_CURRENT_ROUTES, UPDATE_CURRENT_ROUTE } from './actions';
+import { UPDATE_CURRENT_ROUTES, UPDATE_CURRENT_ROUTE } from '../actions';
 
 export default function(state = [], action) {
   switch (action.type) {

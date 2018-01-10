@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { get } from 'lodash'
 import Checkbox from '../components/Checkbox'
 import Details from '../components/Details'
-import { updateRoute } from '../reducers/actions'
+import { updateRoute } from '../actions'
 
 class Panel extends Component {
     render() {
@@ -16,14 +16,20 @@ class Panel extends Component {
             <div className={panelClass}>
                 { detailActive
                     ? <Details hoverDetails={this.props.hoverDetails} />
-                    : this.props.routesList.map((route,i) => (
-                    <Checkbox key={`checkbox-${route.tag}`} 
-                        tag={route.tag} 
-                        title={route.title} 
-                        updateRoute={this.props.updateRoute}
-                        currentRoutes={this.props.currentRoutes}
-                    />
-                ))}
+                    : <div>
+                        <p> Notes: Hover over Bus or Bus Stop to see Bus/Stop Detail infomation</p>
+                        <div> {
+                            this.props.routesList.map((route,i) => (
+                                <Checkbox key={`checkbox-${route.tag}`} 
+                                    tag={route.tag} 
+                                    title={route.title} 
+                                    updateRoute={this.props.updateRoute}
+                                    currentRoutes={this.props.currentRoutes}
+                                />))
+                        }
+                        </div>
+                    </div>
+                }
             </div>
         )
     }

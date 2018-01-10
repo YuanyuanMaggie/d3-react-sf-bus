@@ -55,19 +55,15 @@ class Route extends Component {
     handleMouseOver= () => {
         this.setState({
             strokeWidth: 5,
-            size: "30px"
+            size: "25px"
         })
     }
 
     handleMouseOut= () => {
-        // debounce
-        setTimeout(()=>{
-            this.setState({
-                strokeWidth: 0.5,
-                size: "20px",
-            })
-            }, 300
-        )
+        this.setState({
+            strokeWidth: 0.5,
+            size: "20px",
+        })
     }
 
     render() {

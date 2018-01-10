@@ -1,4 +1,4 @@
-import { UPDATE_DETAILS } from './actions';
+import { UPDATE_DETAILS } from '../actions';
 
 export default function(state = {} , action) {
   switch (action.type) {

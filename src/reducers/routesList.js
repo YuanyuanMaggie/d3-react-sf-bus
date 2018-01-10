@@ -1,4 +1,4 @@
-import { FETCH_ROUTE_LIST } from './actions';
+import { FETCH_ROUTE_LIST } from '../actions';
 
 export default function(state = [], action) {
   switch (action.type) {

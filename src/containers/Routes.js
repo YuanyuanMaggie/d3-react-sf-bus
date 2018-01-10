@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from 'react-redux'
 import { get } from 'lodash'
 import Route from '../components/Route'
-import { updateCache, updateDetails } from '../reducers/actions'
+import { updateCache, updateDetails } from '../actions'
 
 const Routes = (props) => (
     <g>

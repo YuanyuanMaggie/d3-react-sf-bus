@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import Streets from './Streets'
-import Routes from './Routes'
+import Routes from '../containers/Routes'
 
 class Map extends Component {
 

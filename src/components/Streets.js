@@ -17,7 +17,7 @@ class Streets extends Component {
     }
 
     loadPaths = () => {
-        get("/data/sfmaps/streets.json")
+        get("/data/streets.json")
             .then(res => {
             if (res.status !== 200) return;
             const geographyPaths = res.data.features;
