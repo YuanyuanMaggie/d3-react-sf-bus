@@ -2,9 +2,9 @@ import React, { Component } from "react"
 import { get } from "axios"
 import _ from "lodash"
 import { feature } from 'topojson-client'
-import Color from 'color'
-import { generatePathFuc, routeConfigFunc } from '../helpers'
+import { routeConfigFunc } from '../helpers'
 import Vehicles from './Vehicles'
+import BusStop from './BusStop'
 
 class Route extends Component {
     constructor() {
@@ -52,15 +52,9 @@ class Route extends Component {
         return feature({type: "Topology", objects: stopObject}, stopObject);
     }
 
-    toggleVehicle = () => {
-        this.setState({
-            showVehicle: !this.state.showVehicle
-        })
-    }
-
     handleMouseOver= () => {
         this.setState({
-            strokeWidth: 10,
+            strokeWidth: 5,
             size: "30px"
         })
     }
@@ -78,26 +72,28 @@ class Route extends Component {
 
     render() {
         return(
-            <g className="route" 
-            onClick={this.toggleVehicle} 
+            <g className="routeVehicle" 
             onMouseOver = { this.handleMouseOver }
             onMouseOut = { this.handleMouseOut }>
-            {
-                this.state.geographyPaths.map((d,i) => {
-                const curColor = this.state.showVehicle ? this.state.color : Color(this.state.color).alpha(0.3).lighten(0.5);
-                return (
-                    <path
-                        key={ `path-${ i }` }
-                        d={ generatePathFuc()(d) }
-                        className="routeStop"
-                        fill={ curColor }
-                        stroke={ curColor }
-                        strokeWidth={ this.state.strokeWidth }
-                    />
+                <g className="routeStops">{
+                    this.state.geographyPaths.map((d,i) => (
+                        <BusStop key={ `busStop_`+ i } 
+                            strokeWidth={ this.state.strokeWidth }
+                            color={ this.state.color }
+                            d={ d }
+                            route={ this.props.route }
+                            updateDetails={ this.props.updateDetails }
+                        />
+                    )
                 )
-            })
-            }
-            { this.state.showVehicle && <Vehicles route={this.props.route} color={this.state.color} size={this.state.size} />}
+                }
+                </g>
+                <g className="vehicles">
+                    { this.state.showVehicle && <Vehicles route={this.props.route} 
+                    color={this.state.color} 
+                    size={this.state.size} 
+                    updateDetails={this.props.updateDetails}/>}
+                </g>
             </g>
         )
     }

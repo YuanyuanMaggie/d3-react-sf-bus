@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from 'react-redux'
 import { get } from 'lodash'
 import Route from '../components/Route'
-import { updateCache } from '../reducers/actions'
+import { updateCache, updateDetails } from '../reducers/actions'
 
 const Routes = (props) => (
     <g>
@@ -13,7 +13,9 @@ const Routes = (props) => (
             <Route key={`route-${i}`} 
                 route={route} 
                 updateCache={props.updateCache} 
-                cacheRoute={cacheRoute}/>
+                cacheRoute={cacheRoute}
+                updateDetails={props.updateDetails} 
+                />
         )})}
     </g>
 )
@@ -24,7 +26,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    updateCache
+    updateCache,
+    updateDetails
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Routes);

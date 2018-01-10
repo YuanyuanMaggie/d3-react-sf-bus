@@ -7,6 +7,7 @@ import { fetchRoutes, updateRoutes } from '../reducers/actions'
 import Header from './Header'
 import Map from "./Map"
 import Panel from "./Panel"
+
 class Dashboard extends Component {
     componentDidMount() {
         // init with 5 routes

@@ -2,8 +2,8 @@ import React, { Component } from "react"
 import { get } from "axios"
 import _ from "lodash"
 import { feature } from 'topojson-client'
-import { generatePathFuc, vehicleLocFunc } from '../helpers'
-import Bus from '../components/Bus'
+import { vehicleLocFunc } from '../helpers'
+import Vehicle from './Vehicle'
 
 class Vehicles extends Component {
     constructor() {
@@ -46,14 +46,30 @@ class Vehicles extends Component {
         return feature({type: "Topology", objects: vehicleObject}, vehicleObject);
     }
 
+    handleMouseOver = (d) => {
+        const details = {
+            type: "Muni", 
+            route: this.props.route, 
+            busTag: d.properties.heading,
+            stopName: null, 
+            color:this.props.color || null
+        }
+        if(this.props.updateDetails) {
+            this.props.updateDetails(details)
+        }
+    }
+
     render() {
         return(
             <g className="vehicles">
             {
                 this.state.geographyPaths.map((d,i) => (
-                <g key={i} transform={`translate(${generatePathFuc().centroid(d)})`}>
-                    <Bus fill={this.props.color} size={this.props.size} />
-                </g>
+                <Vehicle key={ i } 
+                color={ this.props.color }
+                size={ this.props.size }
+                d={ d } 
+                route={ this.props.route }
+                updateDetails={ this.props.updateDetails } />
                 ))
             }
             </g>
