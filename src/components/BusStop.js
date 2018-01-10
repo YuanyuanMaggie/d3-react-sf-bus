@@ -12,11 +12,13 @@ class BusStop extends Component {
             color:this.props.color || null
         }
         if(this.props.updateDetails) {
+            // update details info when hover over the bus stop
             this.props.updateDetails(details)
         }
     }
 
     handleMouseOut = () => {
+        // clear the details info when move out
         this.props.updateDetails({})
     }
 

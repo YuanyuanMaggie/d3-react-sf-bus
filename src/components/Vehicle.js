@@ -24,12 +24,12 @@ class Vehicle extends Component {
     render() {
         return(
             <g transform={`translate(${generatePathFuc().centroid(this.props.d)})`} 
-            onMouseOver={() => this.handleMouseOver(this.props.d)}
-            onMouseOut={this.handleMouseOut}>
-                <Bus 
-                    fill={this.props.color} 
-                    size={this.props.size} 
-                />
+                onMouseOver={() => this.handleMouseOver(this.props.d)}
+                onMouseOut={this.handleMouseOut}>
+                    <Bus 
+                        fill={this.props.color} 
+                        size={this.props.size} 
+                    />
             </g>
                 
         )

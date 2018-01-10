@@ -9,6 +9,7 @@ class Checkbox extends Component {
     }
 
     componentDidMount(){
+        // set the checkbox checked status if it's active
         if(this.props.currentRoutes){
             this.updateActive(this.props.currentRoutes)
         }

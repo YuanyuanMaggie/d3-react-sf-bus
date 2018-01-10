@@ -15,6 +15,7 @@ class Vehicles extends Component {
     
     componentDidMount() {
         this.loadPaths()
+        // update the vehicles every 15s
         this.timer = setInterval(this.loadPaths.bind(this), 15000)
     }
 
@@ -23,8 +24,9 @@ class Vehicles extends Component {
     }
 
     loadPaths = () => {
-        const CurrentTime = new Date().getTime() - 1000 * 60; // get 1min before
-        const Link = vehicleLocFunc(this.props.route, CurrentTime)
+        // get 1min before
+        const showTime = new Date().getTime() - 1000 * 60; 
+        const Link = vehicleLocFunc(this.props.route, showTime)
         get(Link)
             .then(res => {
                 if (res.status !== 200) return;
@@ -64,12 +66,12 @@ class Vehicles extends Component {
             <g className="vehicles">
             {
                 this.state.geographyPaths.map((d,i) => (
-                <Vehicle key={ i } 
-                color={ this.props.color }
-                size={ this.props.size }
-                d={ d } 
-                route={ this.props.route }
-                updateDetails={ this.props.updateDetails } />
+                    <Vehicle key={ i } 
+                    color={ this.props.color }
+                    size={ this.props.size }
+                    d={ d } 
+                    route={ this.props.route }
+                    updateDetails={ this.props.updateDetails } />
                 ))
             }
             </g>
